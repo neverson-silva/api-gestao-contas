@@ -1,0 +1,61 @@
+app:
+  signingKey: ${SIGNING_KEY:h2yj12j9AcIAb6rKkkrrRDMnchpdhjmFdDsnMjd7FHOUqeHCXDOh04yGXX4m}
+server:
+  port: ${PORT:9090}
+  tomcat:
+    max-http-form-post-size: 500000000
+    max-swallow-size: 500000000
+  compression:
+    enabled: true
+    mime-types: text/html,text/plain,text/css,application/javascript,application/json
+    min-response-size: 1024
+spring:
+  servlet:
+    multipart:
+      enabled: true
+      max-request-size: 50MB
+      max-file-size: 50MB
+  profiles:
+    active: development  #Adicionar no vm options do intellij -Dspring.profiles.active=development
+  application:
+    name: apicontas
+  data:
+    web:
+      pageable:
+        default-page-size: 24
+        page-parameter: page
+        one-indexed-parameters: true
+  security:
+    enabled: false
+  jpa:
+    show-sql: false
+    open-in-view: false
+    properties:
+      hibernate:
+        format_sql: true
+        dialect: org.hibernate.dialect.MySQL5InnoDBDialect
+        #        physical_naming_strategy: org.springframework.boot.orm.jpa.hibernate.SpringPhysicalNamingStrategy
+        naming-strategy: org.springframework.boot.orm.jpa.hibernate.SpringPhysicalNamingStrategy #org.hibernate.cfg.ImprovedNamingStrategy
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://localhost:3306/java?useTimezone=true&serverTimezone=UTC&useSSL=false
+    hikari:
+      minimum-idle: 1
+      maximum-pool-size: 3
+      max-lifetime: 30000
+      connection-timeout: 1800000
+---
+spring:
+  profiles: development
+  datasource:
+    username: root
+    password:
+    url: jdbc:mysql://localhost:3306/pagamentos?useTimezone=true&serverTimezone=UTC&useSSL=false&&allowPublicKeyRetrieval=true
+---
+spring:
+  profiles: prod #aws
+  datasource:
+    username: ${DB_USERNAME}
+    password: ${DB_PASSWORD}
+    url: jdbc:mysql://${DB_HOST}/${DB_NAME}?useTimezone=true&serverTimezone=UTC&useSSL=false&autoReconnect=true&failOverReadOnly=false&maxReconnects=10
+---

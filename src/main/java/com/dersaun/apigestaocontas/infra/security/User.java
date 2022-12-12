@@ -14,6 +14,7 @@ import java.time.Instant;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.ZoneId;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 import java.util.Map;
@@ -39,10 +40,18 @@ public class User implements Serializable, UserCredentialDetails {
         pessoa.setSobrenome((String) pes.get("sobrenome"));
         pessoa.setApelido((String) pes.get("apelido"));
         pessoa.setPerfil((String) pes.get("perfil"));
-        pessoa.setCreatedAt(getLocalDateTime((String) pes.get("createdAt")));
-        pessoa.setUpdatedAt(getLocalDateTime((String) pes.get("updatedAt")));
+        pessoa.setDataCriacao(getLocalDateTime((String) pes.get("dataCriacao")));
+        pessoa.setDataAlteracao(getLocalDateTime((String) pes.get("dataAlteracao")));
         pessoa.setSexo((String) pes.get("sexo"));
-        pessoa.setDataNascimento(getLocalDate((String) pes.get("dataNascimento")));
+
+        try {
+            String ano = ((Integer) ((ArrayList) pes.get("dataNascimento")).get(0)).toString();
+            String mes = ((Integer) ((ArrayList) pes.get("dataNascimento")).get(1)).toString();
+            String dia = ((Integer) ((ArrayList) pes.get("dataNascimento")).get(2)).toString();
+            pessoa.setDataNascimento(getLocalDate( ano + "-" + mes + "-" + dia ));
+        } catch (Exception e) {
+            pessoa.setDataNascimento(getLocalDate((String) pes.get("dataNascimento")));
+        }
 
         this.pessoa = pessoa;
     }

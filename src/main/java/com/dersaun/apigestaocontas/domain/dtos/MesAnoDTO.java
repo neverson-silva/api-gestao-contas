@@ -4,6 +4,8 @@ package com.dersaun.apigestaocontas.domain.dtos;
 import com.dersaun.apigestaocontas.domain.Mes;
 import lombok.*;
 
+import javax.annotation.Nullable;
+
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
@@ -15,5 +17,6 @@ public class MesAnoDTO {
     @NonNull
     Integer anoReferencia;
 
+    @Nullable
     Mes mes;
 }

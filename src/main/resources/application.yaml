@@ -1,3 +1,13 @@
+logging:
+  level:
+    com:
+
+    org:
+      springframework:
+        web:
+          servlet:
+            mvc: ERROR
+
 app:
   signingKey: ${SIGNING_KEY:h2yj12j9AcIAb6rKkkrrRDMnchpdhjmFdDsnMjd7FHOUqeHCXDOh04yGXX4m}
 server:

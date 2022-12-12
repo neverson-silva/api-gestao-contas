@@ -57,18 +57,20 @@ public class Usuario implements UserCredentialDetails {
     private Integer situacao;
 
     @CreationTimestamp
+    @Column(name = "created_at")
     @DateTimeFormat(pattern = "dd/MM/yyyy")
-    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd HH:mm:ss")
     @JsonDeserialize(using = LocalDateTimeDeserializer.class)
     @JsonSerialize(using = LocalDateTimeSerializer.class)
-    private LocalDateTime createdAt;
+    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd HH:mm:ss")
+    private LocalDateTime dataCriacao;
 
     @UpdateTimestamp
+    @Column(name = "updated_at")
     @DateTimeFormat(pattern = "dd/MM/yyyy")
-    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd HH:mm:ss")
     @JsonDeserialize(using = LocalDateTimeDeserializer.class)
     @JsonSerialize(using = LocalDateTimeSerializer.class)
-    private LocalDateTime updatedAt;
+    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd HH:mm:ss")
+    private LocalDateTime dataAlteracao;
 
     @ManyToMany(cascade = CascadeType.MERGE, fetch = FetchType.LAZY)
     @JoinTable(name = "usuario_regra",
@@ -121,5 +123,4 @@ public class Usuario implements UserCredentialDetails {
         }
         return (MutableList<Regra>) regras;
     }
-
 }

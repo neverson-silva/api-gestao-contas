@@ -9,6 +9,7 @@ import com.fasterxml.jackson.datatype.jsr310.ser.LocalDateSerializer;
 import com.fasterxml.jackson.datatype.jsr310.ser.LocalDateTimeSerializer;
 import lombok.AllArgsConstructor;
 import lombok.Data;
+import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
 import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.UpdateTimestamp;
@@ -23,6 +24,7 @@ import java.time.LocalDateTime;
 @NoArgsConstructor
 @Entity
 @Table(name = "devedores")
+@EqualsAndHashCode
 public class Pessoa {
 
     @Id
@@ -46,16 +48,22 @@ public class Pessoa {
     private LocalDate dataNascimento;
 
     @CreationTimestamp
+    @Column(name = "created_at")
     @DateTimeFormat(pattern = "dd/MM/yyyy")
     @JsonDeserialize(using = LocalDateTimeDeserializer.class)
     @JsonSerialize(using = LocalDateTimeSerializer.class)
     @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd HH:mm:ss")
-    private LocalDateTime createdAt;
+    private LocalDateTime dataCriacao;
 
     @UpdateTimestamp
+    @Column(name = "updated_at")
     @DateTimeFormat(pattern = "dd/MM/yyyy")
     @JsonDeserialize(using = LocalDateTimeDeserializer.class)
     @JsonSerialize(using = LocalDateTimeSerializer.class)
     @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd HH:mm:ss")
-    private LocalDateTime updatedAt;
+    private LocalDateTime dataAlteracao;
+
+    public Pessoa(Long id) {
+        this.id = id;
+    }
 }

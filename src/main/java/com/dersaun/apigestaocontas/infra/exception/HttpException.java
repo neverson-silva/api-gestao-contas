@@ -66,6 +66,7 @@ public class HttpException extends RuntimeException{
         setStatus(statusCode);
     }
 
+
     public void setStatus(Integer code) {
         this.status = HttpStatus.resolve(code);
     }

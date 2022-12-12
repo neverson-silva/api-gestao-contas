@@ -51,4 +51,11 @@ public interface UsuarioService {
     static boolean hasRole(Collection<? extends GrantedAuthority> authorities, String role) {
         return authorities.contains(new SimpleGrantedAuthority(role));
     }
+
+    static Pessoa ifNotAdminGetPessoa() {
+        if (UsuarioService.usuario().isAdmin()) {
+            return null;
+        }
+        return UsuarioService.usuario().getPessoa();
+    }
 }

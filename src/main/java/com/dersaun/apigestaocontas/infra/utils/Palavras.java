@@ -1,0 +1,77 @@
+package com.dersaun.apigestaocontas.infra.utils;
+
+import java.util.Arrays;
+import java.util.List;
+
+public class Palavras {
+    public static final List<String> SIGLA_ESTADOS_ALGARISMOS_ROMANOS = Arrays.asList(
+            "i",
+            "ii",
+            "iii",
+            "iv",
+            "ix",
+            "ltda",
+            "s/a",
+            "sa",
+            "v",
+            "vi",
+            "vii",
+            "viii",
+            "x",
+            "ac",
+            "al",
+            "am",
+            "ap",
+            "ba",
+            "ce",
+            "df",
+            "eg",
+            "es",
+            "go",
+            "ma",
+            "mg",
+            "ms",
+            "mt",
+            "nc",
+            "pa",
+            "pb",
+            "pi",
+            "pr",
+            "rj",
+            "rn",
+            "ro",
+            "rr",
+            "rs",
+            "s.a.",
+            "sc",
+            "se",
+            "sp",
+            "ti",
+            "t.i.",
+            "to"
+            );
+
+    public static final List<String> PREPOSICOES = Arrays.asList(
+            "a",
+            "ao",
+            "aos",
+            "as",
+            "da",
+            "das",
+            "de",
+            "do",
+            "dos",
+            "e",
+            "em",
+            "na",
+            "nas",
+            "no",
+            "nos",
+            "o",
+            "os",
+            "pela",
+            "pelo",
+            "por",
+            "�"
+    );
+}

@@ -8,6 +8,7 @@ import com.fasterxml.jackson.datatype.jsr310.deser.LocalDateTimeDeserializer;
 import com.fasterxml.jackson.datatype.jsr310.ser.LocalDateTimeSerializer;
 import lombok.AllArgsConstructor;
 import lombok.Data;
+import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
 import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.UpdateTimestamp;
@@ -18,21 +19,30 @@ import java.time.LocalDateTime;
 
 @JsonIgnoreProperties(value = {"hibernateLazyInitializer", "handler" })
 @Entity
-@Table(name = "meses")
+@Table(name = "cartoes")
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-public class Mes {
+@EqualsAndHashCode()
+public class FormaPagamento {
 
     @Id
     @GeneratedValue
-    @Column(name = "mes_id")
+    @Column(name = "cartao_id")
     private Long id;
 
-    @Column(nullable = false, length = 15)
     private String nome;
 
-    private Boolean atual;
+    @ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.REFRESH)
+    @JoinColumn(name = "devedor_id")
+    private Pessoa dono;
+
+    private Boolean ativo;
+
+    @Column(name = "vencimento")
+    private Integer diaVencimento;
+
+    private String cor;
 
     @CreationTimestamp
     @Column(name = "created_at")
@@ -50,16 +60,15 @@ public class Mes {
     @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd HH:mm:ss")
     private LocalDateTime dataAlteracao;
 
-    public Boolean isAtual() {
-        return atual;
+    public Boolean isCartao() {
+        return this.getId() != 6L && this.getId() != 7L;
     }
 
-    public Mes(Long id) {
-        this.id = id;
+    public Boolean isDinheiro() {
+        return this.getId() == 7L;
     }
 
-    public Mes(Long id, String nome) {
+    public FormaPagamento(Long id) {
         this.id = id;
-        this.nome = nome;
     }
 }

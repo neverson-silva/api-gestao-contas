@@ -16,12 +16,12 @@ public class FormaPagementoServiceImpl implements FormaPagamentoService {
 
     @Override
     public MutableList<FormaPagamento> buscarFormasPagamentosAtivasAdmin() {
-        return formaPagamentoRepository.findAllByOrderByNomeAsc();
+        return formaPagamentoRepository.findAllByAtivoIsTrueOrderByNomeAsc();
     }
 
     @Override
     public MutableList<FormaPagamento> buscarFormasPagamentosDono(Long idPessoa) {
-        return formaPagamentoRepository.findAllByDonoIdOrderByNomeAsc(idPessoa);
+        return formaPagamentoRepository.findAllByDonoIdAndAtivoIsTrueOrderByNomeAsc(idPessoa);
     }
 
     @Override

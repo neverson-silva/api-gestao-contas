@@ -9,7 +9,7 @@ import java.math.BigDecimal;
 public interface LancamentoService {
 
     Lancamento salvar(LancamentoDTO cadastrarLancamentoDTO);
-    Lancamento apagar(Long idLancamento);
+    void apagar(Long idLancamento);
 
     void atualizar(Long id, LancamentoDTO lancamentoDTO);
 

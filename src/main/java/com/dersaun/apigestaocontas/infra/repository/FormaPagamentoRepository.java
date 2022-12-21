@@ -8,8 +8,8 @@ import org.springframework.data.jpa.repository.JpaRepository;
 public interface FormaPagamentoRepository  extends JpaRepository<FormaPagamento, Long> {
 
     @EntityGraph(attributePaths = {"dono"})
-    MutableList<FormaPagamento> findAllByOrderByNomeAsc();
+    MutableList<FormaPagamento> findAllByAtivoIsTrueOrderByNomeAsc();
 
     @EntityGraph(attributePaths = {"dono"})
-    MutableList<FormaPagamento> findAllByDonoIdOrderByNomeAsc(Long idPessoa);
+    MutableList<FormaPagamento> findAllByDonoIdAndAtivoIsTrueOrderByNomeAsc(Long idPessoa);
 }

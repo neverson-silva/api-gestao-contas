@@ -32,4 +32,11 @@ public class LancamentoController {
         lancamentoService.atualizar(idLancamento, params);
         return ResponseEntity.noContent().build();
     }
+
+    @DeleteMapping("{idLancamento}")
+    @CrossOrigin
+    public ResponseEntity<Void> apagarLancamento(@PathVariable("idLancamento") Long idLancamento) {
+        lancamentoService.apagar(idLancamento);
+        return ResponseEntity.noContent().build();
+    }
 }

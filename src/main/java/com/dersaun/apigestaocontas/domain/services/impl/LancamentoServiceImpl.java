@@ -77,7 +77,7 @@ public class LancamentoServiceImpl implements LancamentoService {
     public void atualizar(Long id, LancamentoDTO lancamentoDTO) {
         var lancamento = lancamentoRepository.buscarPorId(id).orElseThrow(() -> HttpException.notFound("Lançamento não cadastrado"));
 
-        if (lancamento.isReadOnly()) {
+        if (lancamento.isReadOnly() && !UsuarioService.usuario().isAdmin()) {
             throw HttpException.badRequest("Conta indisponível para atualização, verifique com a pessoa que realizou o cadastro");
         }
 
@@ -143,8 +143,11 @@ public class LancamentoServiceImpl implements LancamentoService {
 
 
     @Override
-    public Lancamento apagar(Long idLancamento) {
-        return null;
+    @Transactional
+    public void apagar(Long idLancamento) {
+        var lancamento = this.lancamentoRepository.buscarPorId(idLancamento)
+                .orElseThrow(() -> HttpException.notFound("Lançamento não encontrado"));
+        this.lancamentoRepository.delete(lancamento);
     }
 
     private DivisaoDTO dividirLancamento(Lancamento lancamento, DivisaoLancamentoDTO divisao) {

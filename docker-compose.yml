@@ -1,0 +1,10 @@
+version: '2'
+services:
+  app:
+    container_name: app
+    build:
+      context: .
+    expose:
+      - 9090
+    ports:
+      - 9090:9090

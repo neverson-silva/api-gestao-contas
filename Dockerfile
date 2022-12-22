@@ -11,4 +11,4 @@ ENV ARTIFACT_NAME=api-gestao-contas-0.0.1.war
 COPY --from=TEMP_BUILD_IMAGE /app/build/libs/$ARTIFACT_NAME /app/ROOT.war
 EXPOSE 9090
 
-CMD ["java","-jar","-Xms512m", "-Xmx1024m","/app/ROOT.war"]
+CMD ["java","-jar","-Xms512m", "-Xmx1024m","-Dspring.profiles.active=prod", "/app/ROOT.war"]

@@ -54,7 +54,7 @@ public class LancamentoDTO implements Serializable {
     protected LocalDate dataCompra;
 
     public Boolean isDividido() {
-        return this.getDivisao() != null;
+        return this.getDivisao() != null && this.getDivisao().getPessoas().notEmpty();
     }
 
     public Boolean isDivididoIgualmente() {

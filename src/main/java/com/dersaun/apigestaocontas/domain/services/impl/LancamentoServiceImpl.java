@@ -20,10 +20,7 @@ import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.math.BigDecimal;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
-import java.util.Objects;
+import java.util.*;
 
 @Service
 public class LancamentoServiceImpl implements LancamentoService {
@@ -172,7 +169,7 @@ public class LancamentoServiceImpl implements LancamentoService {
         }
 
 
-        parcelaService.atualizar(lancamento, eraParcelado, parcelado, quantidadeParcelasOriginal, mesAtual);
+        parcelaService.atualizar(lancamento, eraParcelado, parcelado, Optional.ofNullable(quantidadeParcelasOriginal).orElse(0), mesAtual);
         this.lancamentoRepository.save(lancamento);
     }
 

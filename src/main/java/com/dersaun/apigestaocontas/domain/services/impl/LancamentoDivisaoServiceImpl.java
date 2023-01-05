@@ -23,7 +23,7 @@ public class LancamentoDivisaoServiceImpl implements LancamentoDivisaoService {
         divisao.setTipoDivisao(EDivisaoTipo.IGUALMENTE);
 
         divisao.setValorLancamentoOriginal(
-                NumberUtils.roundValue(lancamento.getValor().doubleValue() / divisaoLancamentoDTO.getPessoas().size() + 1)
+                NumberUtils.roundValue(lancamento.getValor().doubleValue() / (divisaoLancamentoDTO.getPessoas().size() + 1))
         );
 
         divisaoLancamentoDTO.getPessoas().each(pessoaDivisao -> {

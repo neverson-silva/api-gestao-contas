@@ -125,9 +125,9 @@ public class MesUtils {
 
         if (mesAno.getMes().getId().intValue() == 12 && hoje.getMonthValue() == 1) {
             mes = 11L;
-            ano -= 1;
+            ano = hoje.getYear() - 1;
         } else if (mesAno.getMes().getId().intValue() == 1) {
-            ano -= 1;
+            ano = hoje.getYear() - 1;
             mes = 12L;
         } else {
             mes -= 1L;

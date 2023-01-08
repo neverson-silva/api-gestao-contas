@@ -4,6 +4,7 @@ import com.dersaun.apigestaocontas.domain.Pessoa;
 import com.dersaun.apigestaocontas.domain.ResumoFatura;
 import com.dersaun.apigestaocontas.domain.dtos.*;
 import com.dersaun.apigestaocontas.domain.services.ResumoFaturaService;
+import com.dersaun.apigestaocontas.domain.services.UsuarioService;
 import com.dersaun.apigestaocontas.infra.repository.MesRepository;
 import com.dersaun.apigestaocontas.infra.repository.ResumoFaturaRepository;
 import com.dersaun.apigestaocontas.infra.utils.MesUtils;
@@ -15,9 +16,7 @@ import org.springframework.stereotype.Service;
 
 import javax.persistence.EntityManager;
 import java.math.BigDecimal;
-import java.util.LinkedHashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 
 @Service
@@ -159,10 +158,20 @@ public class ResumoFaturaServiceImpl implements ResumoFaturaService {
     @Override
     public List<ResumoFaturaPessoas> resumoFaturaPessoas(MesAnoDTO mesAnoDTO) {
         var mesAnoAnterior = MesUtils.getMesAnoAnterior(mesAnoDTO);
+        var usuarioAdmin = UsuarioService.usuario().isAdmin();
 
-        var resumosFaturaMesAtual = resumoFaturaRepository.findAllBydMesAndAno(
-                mesAnoDTO.getMesReferencia(), mesAnoDTO.getAnoReferencia()
-        );
+        FastList<ResumoFatura> resumosFaturaMesAtual;
+
+        if (usuarioAdmin) {
+            resumosFaturaMesAtual = resumoFaturaRepository.findAllBydMesAndAno(
+                    mesAnoDTO.getMesReferencia(), mesAnoDTO.getAnoReferencia()
+            );
+        } else {
+            resumosFaturaMesAtual = resumoFaturaRepository.findByMesAndAnoAndPessoas(mesAnoDTO.getMesReferencia(),
+                    mesAnoDTO.getAnoReferencia(), Collections.singletonList(UsuarioService.ifNotAdminGetPessoa().getId()));
+        }
+
+
 
         var resumosFaturaPorPessoa = resumosFaturaMesAtual.groupBy(ResumoFatura::getPessoa);
 
@@ -214,6 +223,7 @@ public class ResumoFaturaServiceImpl implements ResumoFaturaService {
                 "from ResumoFatura rf " +
                 "inner join fetch rf.formaPagamento fp " +
                 "inner join fetch rf.pessoa p " +
+                "left join fetch fp.dono dono " +
 //                "inner join fetch rf.mes m " +
                 "where 1 = 1 ";
         Map<String, Object> params = new LinkedHashMap<>();

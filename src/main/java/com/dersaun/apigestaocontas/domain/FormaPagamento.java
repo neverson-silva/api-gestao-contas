@@ -23,7 +23,7 @@ import java.time.LocalDateTime;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-@EqualsAndHashCode()
+@EqualsAndHashCode(exclude = {"pessoa"})
 public class FormaPagamento {
 
     @Id

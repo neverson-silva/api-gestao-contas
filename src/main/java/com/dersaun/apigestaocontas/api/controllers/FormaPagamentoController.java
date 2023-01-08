@@ -2,6 +2,7 @@ package com.dersaun.apigestaocontas.api.controllers;
 
 
 import com.dersaun.apigestaocontas.domain.FormaPagamento;
+import com.dersaun.apigestaocontas.domain.dtos.MesAnoDTO;
 import com.dersaun.apigestaocontas.domain.services.FormaPagamentoService;
 import com.dersaun.apigestaocontas.domain.services.UsuarioService;
 import org.eclipse.collections.api.list.MutableList;
@@ -11,6 +12,8 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
+
+import java.util.List;
 
 @RestController
 @RequestMapping("formas-pagamentos")
@@ -32,5 +35,12 @@ public class FormaPagamentoController {
             );
         }
         return ResponseEntity.ok(formaPagamentos);
+    }
+
+    @GetMapping("buscar-com-compras")
+    public ResponseEntity<?> buscarFormasPagamentosComCompras(MesAnoDTO mesAnoDTO) {
+        List<FormaPagamento> formasPagamentos = formaPagamentoService.buscarFormasPagamentosComCompras(mesAnoDTO);
+
+        return ResponseEntity.ok(formasPagamentos);
     }
 }

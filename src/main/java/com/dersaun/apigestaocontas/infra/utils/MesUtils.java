@@ -39,8 +39,8 @@ public class MesUtils {
         var mesAtual = hoje.getMonthValue();
         var paramMesId = mes.getId();
 
-        if (mesAtual == 1 && mes.getId().intValue() == 12) {
-            ano -= 1;
+        if (mesAtual == 1 && mes.getId().intValue() == 12 && hoje.getYear() >= ano) {
+            ano = hoje.getYear() - 1;
         }
 
         return new MesAnoDTO(paramMesId, ano, mes);

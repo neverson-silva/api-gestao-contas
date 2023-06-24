@@ -1,0 +1,46 @@
+app:
+  auth:
+    secret: ${SIGNING_KEY:h2yj12j9AcIAb6rKkkrrRDMnchpdhjmFdDsnMjd7FHOUqeHCXDOh04yGXX4m}
+    signOptions:
+      expiresIn: '1d'
+
+http:
+  host: 'localhost'
+  port: 9090
+
+database:
+  type: 'postgres'
+  host: '${DB_HOST:localhost}'
+  port: 5432
+  username: '${DB_USERNAME:root}'
+  password: '${DB_PASSWORD:neverson}'
+  database: '${DB_NAME:pagamentos}'
+  timezone: 'America/Sao_Paulo'
+  logging: false
+  #logging:
+  #  - 'query'
+  #  - 'error'
+  entities:
+    - 'dist/**/*.entity{.ts,.js}'
+  synchronize: false
+  ssl:
+    rejectUnauthorized: false
+  extra:
+    options: '-c TimeZone=America/Sao_Paulo'
+    connectTimeout: 60000
+    sslmode: 'require'
+environment:
+  TZ: 'America/Sao_Paulo'
+storage:
+  firebase:
+    bucketName: ${FIREBASE_BUCKET_NAME}
+    projectId: ${FIREBASE_PROJECT_ID}
+    type: ${FIREBASE_TYPE}
+    privateKeyId: ${FIREBASE_PRIVATE_KEY_ID}
+    privateKey: ${FIREBASE_PRIVATE_KEY}
+    clientEmail: ${FIREBASE_CLIENT_EMAIL}
+    clientId: ${FIREBASE_CLIENT_ID}
+    authUri: ${FIREBASE_AUTH_URI}
+    tokenUri: ${FIREBASE_TOKEN_URI}
+    authProviderX509CertUrl: ${FIREBASE_AUTH_PROVIDER_X509_CERT_URL}
+    ClientX509CertUrl: ${FIREBASE_CLIENT_X509_CERT_URL}

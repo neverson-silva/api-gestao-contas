@@ -1,0 +1,10 @@
+ version: '3'
+ services:
+   app:
+     container_name: app_nestjs
+     build:
+       context: .
+     expose:
+       - 9090
+     ports:
+       - "9090:9090"

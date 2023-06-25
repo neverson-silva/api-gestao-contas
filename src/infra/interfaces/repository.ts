@@ -10,7 +10,7 @@ import { IPaginationOptions } from '@extensions/database/interfaces';
 
 export declare interface IRepository<Entity extends ObjectLiteral>
   extends Repository<Entity> {
-  paginate<Entity>(
+  paginate(
     options: IPaginationOptions,
     searchOptions?: FindOptionsWhere<Entity> | FindManyOptions<Entity>,
   ): Promise<Page<Entity>>;

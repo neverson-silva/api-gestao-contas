@@ -15,7 +15,7 @@ import * as moment from 'moment-timezone';
 import { isValidValue } from '@utils/index';
 import { DocumentBuilder, SwaggerModule } from '@nestjs/swagger';
 import { ContaModule } from '@app/conta/conta.module';
-import { TransformInterceptor } from '@infra/interceptors/transformer.interceptor';
+import * as compression from 'compression';
 
 async function bootstrap() {
   const app = await NestFactory.create(AppModule);
@@ -45,6 +45,7 @@ async function bootstrap() {
   app.enableCors();
 
   app.setGlobalPrefix('api');
+  app.use(compression());
 
   configurarSwagger(app);
 

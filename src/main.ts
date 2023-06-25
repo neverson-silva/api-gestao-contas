@@ -15,11 +15,12 @@ import * as moment from 'moment-timezone';
 import { isValidValue } from '@utils/index';
 import { DocumentBuilder, SwaggerModule } from '@nestjs/swagger';
 import { ContaModule } from '@app/conta/conta.module';
+import { TransformInterceptor } from '@infra/interceptors/transformer.interceptor';
 
 async function bootstrap() {
   const app = await NestFactory.create(AppModule);
   const configService = app.get(ConfigService);
-  const logger = app.get(ConsoleLogger)
+  const logger = app.get(ConsoleLogger);
 
   const envVars = configService.getAt('environment');
 
@@ -49,7 +50,7 @@ async function bootstrap() {
 
   await app.listen(9090);
 
-  logger.log('Aplicação iniciada na porta 9090')
+  logger.log('Aplicação iniciada na porta 9090');
 }
 
 function configurarSwagger(app: INestApplication) {

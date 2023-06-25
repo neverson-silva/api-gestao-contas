@@ -8,7 +8,11 @@ import configuration from '@config/configuration';
 import { AllExceptionFilter } from '@filters/allException.filter';
 import { AuthenticationGuard } from '@guards/authentication.guard';
 import { AuthorizationGuard } from '@guards/authorization.guard';
-import { ClassSerializerInterceptor, ConsoleLogger, Module } from '@nestjs/common';
+import {
+  ClassSerializerInterceptor,
+  ConsoleLogger,
+  Module,
+} from '@nestjs/common';
 import { ConfigModule, ConfigService } from '@nestjs/config';
 import { APP_FILTER, APP_GUARD, APP_INTERCEPTOR } from '@nestjs/core';
 import { TypeOrmModule } from '@nestjs/typeorm';
@@ -16,6 +20,7 @@ import { SnakeNamingStrategy } from 'typeorm-naming-strategies';
 import { StorageModule } from './app/storage/storage.module';
 import { CustomLogger } from '@infra/loggers/typeorm.logger';
 import { DatabaseConfig } from '@config/app.config';
+import { TransformInterceptor } from '@infra/interceptors/transformer.interceptor';
 
 @Module({
   imports: [
@@ -29,7 +34,8 @@ import { DatabaseConfig } from '@config/app.config';
       extraProviders: [ConfigService],
       inject: [ConfigService],
       useFactory: (configService: ConfigService) => {
-        const database: DatabaseConfig = configService.getAt<DatabaseConfig>('database');
+        const database: DatabaseConfig =
+          configService.getAt<DatabaseConfig>('database');
         return {
           ...database,
           namingStrategy: new SnakeNamingStrategy(),
@@ -59,6 +65,10 @@ import { DatabaseConfig } from '@config/app.config';
     {
       provide: APP_FILTER,
       useClass: AllExceptionFilter,
+    },
+    {
+      provide: APP_INTERCEPTOR,
+      useClass: TransformInterceptor,
     },
     {
       provide: APP_INTERCEPTOR,

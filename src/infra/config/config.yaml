@@ -3,6 +3,9 @@ app:
     secret: ${SIGNING_KEY:h2yj12j9AcIAb6rKkkrrRDMnchpdhjmFdDsnMjd7FHOUqeHCXDOh04yGXX4m}
     signOptions:
       expiresIn: '1d'
+  security:
+    enableEncryptation: ${ENCRIPTAR:false}
+    publicKey: chavequalquersohteste
 
 http:
   host: 'localhost'

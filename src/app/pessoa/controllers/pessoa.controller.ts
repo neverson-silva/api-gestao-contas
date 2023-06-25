@@ -6,11 +6,15 @@ import { Pessoa } from '@app/pessoa/models/pessoa.entity';
 import { PessoaComValorDespesaDto } from '@app/pessoa/pessoa-com-valor-despesa.dto';
 import {
   BadRequestException,
+  Body,
   Controller,
   Get,
+  HttpCode,
+  HttpStatus,
   Inject,
   Param,
   Patch,
+  Put,
   UploadedFile,
   UseInterceptors,
 } from '@nestjs/common';
@@ -18,6 +22,7 @@ import { FileInterceptor } from '@nestjs/platform-express';
 import { mesUtil } from '@utils/meses';
 import { numberUtils } from '@utils/number';
 import { IPessoaService } from '@app/pessoa/interfaces/pessoa.service.interface';
+import { PessoaDto } from '@app/pessoa/dtos/pessoa.dto';
 
 @Controller({ version: '1', path: 'pessoas' })
 export class PessoaController {
@@ -73,5 +78,14 @@ export class PessoaController {
       console.error(err);
       throw new BadRequestException('tente mais tarde');
     }
+  }
+
+  @Put(':id')
+  @HttpCode(HttpStatus.NO_CONTENT)
+  async atualizarPessoa(
+    @Param('id') id: number,
+    @Body() paramsDto: PessoaDto,
+  ): Promise<void> {
+    await this.pessoService.atualizarPessoa(id, paramsDto);
   }
 }

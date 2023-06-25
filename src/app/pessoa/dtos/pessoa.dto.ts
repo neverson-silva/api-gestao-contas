@@ -1,7 +1,7 @@
 import { IsNotEmpty, IsOptional } from 'class-validator';
 import { ApiProperty } from '@nestjs/swagger';
 import { Transform } from 'class-transformer';
-import moment from 'moment';
+import * as moment from 'moment';
 
 export class PessoaDto {
   @IsNotEmpty({ message: 'Nome não informado' })

@@ -39,7 +39,10 @@ export class TransformInterceptor implements NestInterceptor {
     // Transformar o body, query string e headers
     request.body = this.decrypData(request.body, chave);
     request.query = this.decrypData(request.query, chave);
-    request.headers = this.decrypData(request.headers, chave);
+    request.headers = {
+      ...request.headers,
+      ...this.decrypData(request.headers, chave),
+    };
 
     return next.handle().pipe(
       map((data) => {

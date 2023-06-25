@@ -3,7 +3,7 @@ import { IResumoFaturaRepository } from '@app/conta/interfaces/resumo-fatura.rep
 import { ResumoFatura } from '@app/conta/models/resumo-fatura.entity';
 import { IPessoaRepository } from '@app/pessoa/interfaces/pessoa.repository.interface';
 import { Pessoa } from '@app/pessoa/models/pessoa.entity';
-import { PessoaComValorDespesaDto } from '@app/pessoa/pessoa-com-valor-despesa.dto';
+import { PessoaComValorDespesaDto } from '@app/pessoa/dtos/pessoa-com-valor-despesa.dto';
 import {
   BadRequestException,
   Body,

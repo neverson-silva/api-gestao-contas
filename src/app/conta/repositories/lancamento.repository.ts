@@ -63,7 +63,6 @@ export class LancamentoRepository
       .where('lancamentoRelacionado.id = :idLancamento', {
         idLancamento: lancamento.id,
       });
-    console.log(query.getQueryAndParameters());
     await query.execute();
   }
 }

@@ -17,6 +17,9 @@ export class TotalPessoaService implements ITotalPessoaService {
     @Inject('IResumoFaturaRepository')
     private readonly resumoFaturaRepository: IResumoFaturaRepository,
   ) {}
+  async buscarTotaisPorMesAno(mesAnoDto: MesAnoDTO): Promise<TotalPessoa[]> {
+    return await this.totalPessoaRepository.findAllByMesAno(mesAnoDto);
+  }
 
   async salvarPessoas(mesAno: MesAnoDTO): Promise<TotalPessoa[]> {
     const resumosFatura = await this.resumoFaturaRepository.findAllBydMesAndAno(

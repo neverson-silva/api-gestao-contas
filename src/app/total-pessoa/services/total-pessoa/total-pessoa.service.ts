@@ -1,7 +1,7 @@
 import { ITotalPessoaRepository } from '@app/total-pessoa/interfaces/total-pessoa.repository.interface';
 import { ITotalPessoaService } from '@app/total-pessoa/interfaces/total-pessoa.service.interface';
 import { Inject, Injectable } from '@nestjs/common';
-import { EntityManager } from 'typeorm';
+import { DeepPartial, EntityManager } from 'typeorm';
 import { MesAnoDTO } from '@app/conta/dtos/mes-ano.dto';
 import { TotalPessoa } from '@app/total-pessoa/models/total-pessoa.entity';
 import { IResumoFaturaRepository } from '@app/conta/interfaces/resumo-fatura.repository.interface';
@@ -83,5 +83,23 @@ export class TotalPessoaService implements ITotalPessoaService {
 
   storeCurrentManager() {
     this.totalPessoaRepository.storeCurrentManager();
+  }
+
+  async atualizarValorPago(
+    id: number,
+    totalPessoa: DeepPartial<TotalPessoa>,
+  ): Promise<TotalPessoa> {
+    const totalPessoaDB = await this.totalPessoaRepository.findOneByOrFail({
+      id,
+    });
+
+    totalPessoaDB.valorPago = Number(totalPessoa.valorPago);
+    totalPessoaDB.diferenca = totalPessoaDB.total - totalPessoaDB.valorPago;
+
+    if (totalPessoaDB.diferenca < 0) {
+      totalPessoaDB.diferenca = 0;
+    }
+
+    return await this.totalPessoaRepository.save(totalPessoaDB);
   }
 }

@@ -1,8 +1,8 @@
+import { IParcelaRepository } from '@app/conta/interfaces/parcela.repository.interface';
+import { Lancamento } from '@app/conta/models/lancamento.entity';
+import { Parcela } from '@app/conta/models/parcela.entity';
 import { Injectable } from '@nestjs/common';
 import { EntityManager, Repository } from 'typeorm';
-import { IParcelaRepository } from '../interfaces/parcela.repository.interface';
-import { Parcela } from '../models/parcela.entity';
-import { Lancamento } from '@app/conta/models/lancamento.entity';
 
 @Injectable()
 export class ParcelaRepository

@@ -1,8 +1,8 @@
 import { Parcelamento } from '@app/conta/dtos/parcelamento';
-import { Lancamento } from '@app/conta/models/lancamento.entity';
-import { Parcela } from '@app/conta/models/parcela.entity';
-import { Mes } from '@app/conta/models/mes.entity';
 import { FaturaAberta } from '@app/conta/models/fatura-aberta.entity';
+import { Lancamento } from '@app/conta/models/lancamento.entity';
+import { Mes } from '@app/conta/models/mes.entity';
+import { Parcela } from '@app/conta/models/parcela.entity';
 import { ManagebleRepository } from '@infra/interfaces/repository';
 
 export interface IParcelaService extends ManagebleRepository {

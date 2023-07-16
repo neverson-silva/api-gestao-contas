@@ -1,6 +1,6 @@
-import { IsNotEmpty, IsOptional } from 'class-validator';
 import { ApiProperty } from '@nestjs/swagger';
 import { Transform } from 'class-transformer';
+import { IsNotEmpty, IsOptional } from 'class-validator';
 import * as moment from 'moment';
 
 export class PessoaDto {

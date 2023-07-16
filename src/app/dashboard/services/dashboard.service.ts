@@ -5,11 +5,11 @@ import { IPessoaCorGraficoRepository } from '@app/conta/interfaces/pessoa-cor-gr
 import { IResumoFaturaService } from '@app/conta/interfaces/resumo-fatura.service';
 import { FormaPagamento } from '@app/conta/models/forma-pagamento.entity';
 import { ResumoFatura } from '@app/conta/models/resumo-fatura.entity';
-import { IDashboardService } from '@app/dashboard/interfaces/dashboard.service.interface';
 import { DadosGraficoGastoPorFormaPagamentoDTO } from '@app/dashboard/dtos/dados-grafico-gasto-por-forma-pagamento.dto';
 import { GastosFormaPagamentoMesAnoDTO } from '@app/dashboard/dtos/gastos-forma-pagamento-mes-ano.dto';
 import { GastosPessoaMesAnoDTO } from '@app/dashboard/dtos/gastos-pessoa-mes-ano.dto';
 import { TotalPessoaMesAnoDTO } from '@app/dashboard/dtos/total-pessoa-mes-ano.dto';
+import { IDashboardService } from '@app/dashboard/interfaces/dashboard.service.interface';
 import { Pessoa } from '@app/pessoa/models/pessoa.entity';
 import { Inject, Injectable } from '@nestjs/common';
 import { mesUtil } from '@utils/meses';

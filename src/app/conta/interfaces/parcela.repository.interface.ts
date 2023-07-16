@@ -1,9 +1,6 @@
-import {
-  IRepository,
-  ManagebleRepository,
-} from 'src/infra/interfaces/repository';
-import { Parcela } from '../models/parcela.entity';
 import { Lancamento } from '@app/conta/models/lancamento.entity';
+import { Parcela } from '@app/conta/models/parcela.entity';
+import { IRepository, ManagebleRepository } from '@infra/interfaces/repository';
 
 export interface IParcelaRepository
   extends IRepository<Parcela>,

@@ -1,8 +1,8 @@
-import { Module } from '@nestjs/common';
-import { faturaProviders } from './fatura.provider';
-import { FaturaController } from './controllers/fatura.controller';
 import { ContaModule } from '@app/conta/conta.module';
+import { FaturaController } from '@app/fatura/controllers/fatura.controller';
+import { faturaProviders } from '@app/fatura/fatura.provider';
 import { TotalPessoaModule } from '@app/total-pessoa/total-pessoa.module';
+import { Module } from '@nestjs/common';
 
 @Module({
   imports: [ContaModule, TotalPessoaModule],

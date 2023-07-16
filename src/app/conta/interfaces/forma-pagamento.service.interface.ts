@@ -1,6 +1,6 @@
 import { PessoaUsuarioAutenticadoDTO } from '@app/autenticacao/dtos/usuario-autenticado.dto';
+import { FormaPagamento } from '@app/conta/models/forma-pagamento.entity';
 import { Pessoa } from '@app/pessoa/models/pessoa.entity';
-import { FormaPagamento } from '../models/forma-pagamento.entity';
 
 export interface IFormaPagamentoService {
   buscarFormasPagamentosAtivasAdmin(): Promise<FormaPagamento[]>;

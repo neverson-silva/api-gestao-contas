@@ -1,8 +1,5 @@
-import {
-  IRepository,
-  ManagebleRepository,
-} from 'src/infra/interfaces/repository';
-import { Lancamento } from '../models/lancamento.entity';
+import { Lancamento } from '@app/conta/models/lancamento.entity';
+import { IRepository, ManagebleRepository } from '@infra/interfaces/repository';
 
 export interface ILancamentoRepository
   extends IRepository<Lancamento>,

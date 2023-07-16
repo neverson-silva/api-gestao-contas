@@ -1,8 +1,8 @@
-import { IPessoaService } from '@app/pessoa/interfaces/pessoa.service.interface';
-import { Inject, Injectable, NotFoundException } from '@nestjs/common';
-import { IPessoaRepository } from '@app/pessoa/interfaces/pessoa.repository.interface';
-import { IStorage } from '@app/storage/interfaces/storage.interface';
 import { PessoaDto } from '@app/pessoa/dtos/pessoa.dto';
+import { IPessoaRepository } from '@app/pessoa/interfaces/pessoa.repository.interface';
+import { IPessoaService } from '@app/pessoa/interfaces/pessoa.service.interface';
+import { IStorage } from '@app/storage/interfaces/storage.interface';
+import { Inject, Injectable, NotFoundException } from '@nestjs/common';
 
 @Injectable()
 export class PessoaService implements IPessoaService {

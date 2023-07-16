@@ -1,7 +1,7 @@
-import { EntityManager, Repository } from 'typeorm';
-import { Usuario } from '../models/usuario.entity';
+import { IUsuarioRepository } from '@app/autenticacao/interfaces/usuario.repository';
+import { Usuario } from '@app/autenticacao/models/usuario.entity';
 import { Injectable } from '@nestjs/common';
-import { IUsuarioRepository } from '../interfaces/usuario.repository';
+import { EntityManager, Repository } from 'typeorm';
 
 @Injectable()
 export class UsuarioRepository

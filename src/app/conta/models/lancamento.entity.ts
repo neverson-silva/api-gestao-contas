@@ -1,7 +1,11 @@
+import { FormaPagamento } from '@app/conta/models/forma-pagamento.entity';
+import { Mes } from '@app/conta/models/mes.entity';
+import { Parcela } from '@app/conta/models/parcela.entity';
 import { Pessoa } from '@app/pessoa/models/pessoa.entity';
-import { Exclude, Expose } from 'class-transformer';
-import { isValidValue } from 'src/infra/utils/index';
 import { NumericTransformer } from '@infra/transformers/numeric.transformer';
+import { isValidValue } from '@utils/index';
+import { numberUtils } from '@utils/number';
+import { Exclude, Expose } from 'class-transformer';
 import {
   Column,
   CreateDateColumn,
@@ -14,10 +18,6 @@ import {
   Tree,
   UpdateDateColumn,
 } from 'typeorm';
-import { FormaPagamento } from './forma-pagamento.entity';
-import { Mes } from './mes.entity';
-import { Parcela } from './parcela.entity';
-import { numberUtils } from '@utils/number';
 
 @Entity('contas', { orderBy: { dataCompra: 'DESC' } })
 @Tree('adjacency-list')

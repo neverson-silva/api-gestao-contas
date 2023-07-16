@@ -1,7 +1,7 @@
 import { ContaModule } from '@app/conta/conta.module';
+import { DashboardController } from '@app/dashboard/controllers/dashboard.controller';
+import { dashboardProviders } from '@app/dashboard/dashboard.provider';
 import { Module } from '@nestjs/common';
-import { DashboardController } from './controllers/dashboard.controller';
-import { dashboardProviders } from './dashboard.provider';
 
 @Module({
   imports: [ContaModule],

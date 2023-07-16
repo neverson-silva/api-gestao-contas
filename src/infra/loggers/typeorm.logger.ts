@@ -1,6 +1,6 @@
-import { Logger, QueryRunner } from 'typeorm';
 import sqlFormatter from '@sqltools/formatter';
 import * as highlight from 'cli-highlight';
+import { Logger, QueryRunner } from 'typeorm';
 
 export class CustomLogger implements Logger {
   log(level: 'log' | 'info' | 'warn', message: any, queryRunner?: QueryRunner) {

@@ -1,9 +1,11 @@
 import { IMesRepository } from '@app/conta/interfaces/mes.repository.interface';
 import { IResumoFaturaRepository } from '@app/conta/interfaces/resumo-fatura.repository.interface';
 import { ResumoFatura } from '@app/conta/models/resumo-fatura.entity';
-import { IPessoaRepository } from '@app/pessoa/interfaces/pessoa.repository.interface';
-import { Pessoa } from '@app/pessoa/models/pessoa.entity';
 import { PessoaComValorDespesaDto } from '@app/pessoa/dtos/pessoa-com-valor-despesa.dto';
+import { PessoaDto } from '@app/pessoa/dtos/pessoa.dto';
+import { IPessoaRepository } from '@app/pessoa/interfaces/pessoa.repository.interface';
+import { IPessoaService } from '@app/pessoa/interfaces/pessoa.service.interface';
+import { Pessoa } from '@app/pessoa/models/pessoa.entity';
 import {
   BadRequestException,
   Body,
@@ -21,8 +23,6 @@ import {
 import { FileInterceptor } from '@nestjs/platform-express';
 import { mesUtil } from '@utils/meses';
 import { numberUtils } from '@utils/number';
-import { IPessoaService } from '@app/pessoa/interfaces/pessoa.service.interface';
-import { PessoaDto } from '@app/pessoa/dtos/pessoa.dto';
 
 @Controller({ version: '1', path: 'pessoas' })
 export class PessoaController {

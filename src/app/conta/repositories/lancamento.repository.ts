@@ -1,7 +1,7 @@
+import { ILancamentoRepository } from '@app/conta/interfaces/lancamento.repository.interface';
+import { Lancamento } from '@app/conta/models/lancamento.entity';
 import { Injectable } from '@nestjs/common';
 import { EntityManager, Repository } from 'typeorm';
-import { Lancamento } from '../models/lancamento.entity';
-import { ILancamentoRepository } from '@app/conta/interfaces/lancamento.repository.interface';
 
 @Injectable()
 export class LancamentoRepository

@@ -1,10 +1,10 @@
 import { PessoaUsuarioAutenticadoDTO } from '@app/autenticacao/dtos/usuario-autenticado.dto';
+import { IFormaPagamentoRepository } from '@app/conta/interfaces/forma-pagamento.repository.interface';
+import { FormaPagamento } from '@app/conta/models/forma-pagamento.entity';
 import { FaturaItem } from '@app/fatura/models/fatura-item.entity';
 import { Pessoa } from '@app/pessoa/models/pessoa.entity';
 import { Injectable } from '@nestjs/common';
 import { EntityManager, Repository } from 'typeorm';
-import { IFormaPagamentoRepository } from '../interfaces/forma-pagamento.repository.interface';
-import { FormaPagamento } from '../models/forma-pagamento.entity';
 
 @Injectable()
 export class FormaPagamentoRepository

@@ -1,10 +1,10 @@
-import { IRepository } from 'src/infra/interfaces/repository';
-import { FaturaItem } from '../models/fatura-item.entity';
-import { MesAnoDTO } from '@app/conta/dtos/mes-ano.dto';
-import { Page } from '@utils/dtos/page.dto';
-import { Pessoa } from '@app/pessoa/models/pessoa.entity';
 import { PessoaUsuarioAutenticadoDTO } from '@app/autenticacao/dtos/usuario-autenticado.dto';
+import { MesAnoDTO } from '@app/conta/dtos/mes-ano.dto';
+import { FaturaItem } from '@app/fatura/models/fatura-item.entity';
+import { Pessoa } from '@app/pessoa/models/pessoa.entity';
 import { IPaginationOptions } from '@extensions/database/interfaces';
+import { IRepository } from '@infra/interfaces/repository';
+import { Page } from '@utils/dtos/page.dto';
 
 export interface IFaturaItemRepository extends IRepository<FaturaItem> {
   getFaturaItemsByMesAno(

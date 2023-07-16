@@ -1,6 +1,6 @@
+import { Usuario } from '@app/autenticacao/models/usuario.entity';
 import { Pessoa } from '@app/pessoa/models/pessoa.entity';
 import { OmitType } from '@nestjs/swagger';
-import { Usuario } from '../models/usuario.entity';
 
 export class PessoaUsuarioAutenticadoDTO extends OmitType(Pessoa, [
   'createdAt',

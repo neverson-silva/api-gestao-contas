@@ -4,10 +4,13 @@ import { DashboardModule } from '@app/dashboard/dashboard.module';
 import { FaturaModule } from '@app/fatura/fatura.module';
 import { PessoaModule } from '@app/pessoa/pessoa.module';
 import { TotalPessoaModule } from '@app/total-pessoa/total-pessoa.module';
+import { DatabaseConfig } from '@config/app.config';
 import configuration from '@config/configuration';
 import { AllExceptionFilter } from '@filters/allException.filter';
 import { AuthenticationGuard } from '@guards/authentication.guard';
 import { AuthorizationGuard } from '@guards/authorization.guard';
+import { TransformInterceptor } from '@infra/interceptors/transformer.interceptor';
+import { CustomLogger } from '@infra/loggers/typeorm.logger';
 import {
   ClassSerializerInterceptor,
   ConsoleLogger,
@@ -18,9 +21,6 @@ import { APP_FILTER, APP_GUARD, APP_INTERCEPTOR } from '@nestjs/core';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { SnakeNamingStrategy } from 'typeorm-naming-strategies';
 import { StorageModule } from './app/storage/storage.module';
-import { CustomLogger } from '@infra/loggers/typeorm.logger';
-import { DatabaseConfig } from '@config/app.config';
-import { TransformInterceptor } from '@infra/interceptors/transformer.interceptor';
 
 @Module({
   imports: [

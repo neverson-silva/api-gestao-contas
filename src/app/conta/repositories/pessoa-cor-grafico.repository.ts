@@ -1,7 +1,7 @@
+import { IPessoaCorGraficoRepository } from '@app/conta/interfaces/pessoa-cor-grafico.repository.interface';
+import { PessoaCorGrafico } from '@app/conta/models/pessoa-cor-grafico.entity';
 import { Injectable } from '@nestjs/common';
 import { EntityManager, Repository } from 'typeorm';
-import { IPessoaCorGraficoRepository } from '../interfaces/pessoa-cor-grafico.repository.interface';
-import { PessoaCorGrafico } from '../models/pessoa-cor-grafico.entity';
 
 @Injectable()
 export class PessoaCorGraficoRepository

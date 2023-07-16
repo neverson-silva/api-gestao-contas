@@ -10,9 +10,9 @@ import {
   UpdateDateColumn,
 } from 'typeorm';
 
+import { Regra } from '@app/autenticacao/models/regra.entity';
 import { Pessoa } from '@app/pessoa/models/pessoa.entity';
 import * as bcrypt from 'bcryptjs';
-import { Regra } from './regra.entity';
 import { Exclude } from 'class-transformer';
 
 @Entity({ name: 'users' })

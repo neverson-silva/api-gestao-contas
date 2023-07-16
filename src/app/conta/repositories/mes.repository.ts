@@ -1,7 +1,7 @@
+import { IMesRepository } from '@app/conta/interfaces/mes.repository.interface';
+import { Mes } from '@app/conta/models/mes.entity';
 import { Injectable } from '@nestjs/common';
 import { EntityManager, Repository } from 'typeorm';
-import { IMesRepository } from '../interfaces/mes.repository.interface';
-import { Mes } from '../models/mes.entity';
 
 @Injectable()
 export class MesRepository extends Repository<Mes> implements IMesRepository {

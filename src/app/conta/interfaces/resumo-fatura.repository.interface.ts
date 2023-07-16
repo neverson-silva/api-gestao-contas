@@ -1,7 +1,7 @@
+import { MesAnoChartDTO } from '@app/conta/dtos/mes-ano-chart.dto';
+import { ResumoFatura } from '@app/conta/models/resumo-fatura.entity';
 import { Pessoa } from '@app/pessoa/models/pessoa.entity';
-import { IRepository } from 'src/infra/interfaces/repository';
-import { MesAnoChartDTO } from '../dtos/mes-ano-chart.dto';
-import { ResumoFatura } from '../models/resumo-fatura.entity';
+import { IRepository } from '@infra/interfaces/repository';
 
 export interface IResumoFaturaRepository extends IRepository<ResumoFatura> {
   findAllByPessoaIdAndMesAndAno(

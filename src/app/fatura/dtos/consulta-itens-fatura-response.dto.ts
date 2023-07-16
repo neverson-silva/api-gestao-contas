@@ -1,6 +1,6 @@
+import { FaturaItem } from '@app/fatura/models/fatura-item.entity';
 import { ApiProperty } from '@nestjs/swagger';
 import { Page } from '@utils/dtos/page.dto';
-import { FaturaItem } from '@app/fatura/models/fatura-item.entity';
 
 export class ConsultaItensFaturaResponseDTO {
   @ApiProperty()

@@ -1,10 +1,13 @@
+import { MesAnoDTO } from '@app/conta/dtos/mes-ano.dto';
+import {
+  EFormaPagamento,
+  FormaPagamento,
+} from '@app/conta/models/forma-pagamento.entity';
+import { Mes } from '@app/conta/models/mes.entity';
 import { Pessoa } from '@app/pessoa/models/pessoa.entity';
-import { isValidValue } from '@utils/index';
 import { NumericTransformer } from '@infra/transformers/numeric.transformer';
+import { isValidValue } from '@utils/index';
 import { Column, Entity, JoinColumn, ManyToOne, PrimaryColumn } from 'typeorm';
-import { MesAnoDTO } from '../dtos/mes-ano.dto';
-import { EFormaPagamento, FormaPagamento } from './forma-pagamento.entity';
-import { Mes } from './mes.entity';
 
 @Entity()
 export class ResumoFatura {

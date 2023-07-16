@@ -1,3 +1,5 @@
+import { Lancamento } from '@app/conta/models/lancamento.entity';
+import { Mes } from '@app/conta/models/mes.entity';
 import { NumericTransformer } from '@infra/transformers/numeric.transformer';
 import {
   Column,
@@ -8,8 +10,6 @@ import {
   PrimaryGeneratedColumn,
   UpdateDateColumn,
 } from 'typeorm';
-import { Lancamento } from './lancamento.entity';
-import { Mes } from './mes.entity';
 
 @Entity({ name: 'parcelas' })
 export class Parcela {

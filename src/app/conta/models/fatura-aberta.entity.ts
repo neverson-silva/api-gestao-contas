@@ -1,7 +1,7 @@
-import { Entity, JoinColumn, ManyToOne, PrimaryColumn } from 'typeorm';
-import { Pessoa } from '@app/pessoa/models/pessoa.entity';
 import { Lancamento } from '@app/conta/models/lancamento.entity';
 import { Parcela } from '@app/conta/models/parcela.entity';
+import { Pessoa } from '@app/pessoa/models/pessoa.entity';
+import { Entity, JoinColumn, ManyToOne, PrimaryColumn } from 'typeorm';
 
 @Entity({ name: 'lancamentos' })
 export class FaturaAberta {

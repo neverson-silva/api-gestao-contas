@@ -1,3 +1,8 @@
+import { UsuarioAutenticadoDto } from '@app/autenticacao/dtos/usuario-autenticado.dto';
+import { UsuarioDto } from '@app/autenticacao/dtos/usuario.dto';
+import { IAutenticacaoService } from '@app/autenticacao/interfaces/autenticacao.service';
+import { IUsuarioRepository } from '@app/autenticacao/interfaces/usuario.repository';
+import { Usuario } from '@app/autenticacao/models/usuario.entity';
 import {
   Inject,
   Injectable,
@@ -6,11 +11,6 @@ import {
 } from '@nestjs/common';
 import { ConfigService } from '@nestjs/config';
 import * as jwt from 'jsonwebtoken';
-import { UsuarioAutenticadoDto } from '../dtos/usuario-autenticado.dto';
-import { UsuarioDto } from '../dtos/usuario.dto';
-import { IAutenticacaoService } from '../interfaces/autenticacao.service';
-import { IUsuarioRepository } from '../interfaces/usuario.repository';
-import { Usuario } from '@app/autenticacao/models/usuario.entity';
 
 @Injectable()
 export class AutenticacaoService implements IAutenticacaoService {
@@ -29,7 +29,10 @@ export class AutenticacaoService implements IAutenticacaoService {
   ): Promise<Usuario & { accessToken: string; refreshToken: string }> {
     const usuario = await this.usuarioRepository.findOne({
       where: { email: usuarioDto.conta },
-      relations: ['pessoa', 'regras'],
+      relations: {
+        pessoa: true,
+        regras: true,
+      },
     });
 
     if (!usuario || !(await usuario.compararSenha(usuarioDto.senha))) {

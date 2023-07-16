@@ -1,7 +1,4 @@
-import {
-  IRepository,
-  ManagebleRepository,
-} from 'src/infra/interfaces/repository';
-import { Mes } from '../models/mes.entity';
+import { Mes } from '@app/conta/models/mes.entity';
+import { IRepository, ManagebleRepository } from '@infra/interfaces/repository';
 
 export type IMesRepository = IRepository<Mes> & ManagebleRepository;

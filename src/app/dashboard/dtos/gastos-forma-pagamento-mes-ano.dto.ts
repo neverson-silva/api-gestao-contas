@@ -1,5 +1,5 @@
 import { MesAnoChartDTO } from '@app/conta/dtos/mes-ano-chart.dto';
-import { DadosGraficoGastoPorFormaPagamentoDTO } from './dados-grafico-gasto-por-forma-pagamento.dto';
+import { DadosGraficoGastoPorFormaPagamentoDTO } from '@app/dashboard/dtos/dados-grafico-gasto-por-forma-pagamento.dto';
 
 export class GastosFormaPagamentoMesAnoDTO extends MesAnoChartDTO {
   totaisFormaPagamento: DadosGraficoGastoPorFormaPagamentoDTO[];

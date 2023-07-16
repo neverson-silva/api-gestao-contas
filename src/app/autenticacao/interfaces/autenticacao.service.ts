@@ -1,4 +1,4 @@
-import { UsuarioDto } from '../dtos/usuario.dto';
+import { UsuarioDto } from '@app/autenticacao/dtos/usuario.dto';
 import { Usuario } from '@app/autenticacao/models/usuario.entity';
 
 export interface IAutenticacaoService {

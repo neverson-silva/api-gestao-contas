@@ -1,7 +1,7 @@
+import { IPessoaRepository } from '@app/pessoa/interfaces/pessoa.repository.interface';
+import { Pessoa } from '@app/pessoa/models/pessoa.entity';
 import { Injectable } from '@nestjs/common';
 import { EntityManager, Repository } from 'typeorm';
-import { IPessoaRepository } from '../interfaces/pessoa.repository.interface';
-import { Pessoa } from '../models/pessoa.entity';
 
 @Injectable()
 export class PessoaRepository

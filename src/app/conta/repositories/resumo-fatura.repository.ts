@@ -1,9 +1,9 @@
+import { MesAnoChartDTO } from '@app/conta/dtos/mes-ano-chart.dto';
+import { IResumoFaturaRepository } from '@app/conta/interfaces/resumo-fatura.repository.interface';
+import { ResumoFatura } from '@app/conta/models/resumo-fatura.entity';
 import { Pessoa } from '@app/pessoa/models/pessoa.entity';
 import { Injectable } from '@nestjs/common';
 import { EntityManager, Repository } from 'typeorm';
-import { MesAnoChartDTO } from '../dtos/mes-ano-chart.dto';
-import { IResumoFaturaRepository } from '../interfaces/resumo-fatura.repository.interface';
-import { ResumoFatura } from '../models/resumo-fatura.entity';
 
 @Injectable()
 export class ResumoFaturaRepository
@@ -24,8 +24,6 @@ export class ResumoFaturaRepository
 
     const resumosFaturas = await query.getMany();
     return resumosFaturas;
-
-    return await resumosFaturas;
   }
 
   async findByMesAndAnoAndPessoas(

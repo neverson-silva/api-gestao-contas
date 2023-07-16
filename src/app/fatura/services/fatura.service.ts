@@ -1,33 +1,33 @@
-import { Inject, Injectable, Logger } from '@nestjs/common';
-import { IFaturaService } from '@app/fatura/interfaces/fatura.service.interface';
-import { IFaturaItemRepository } from '@app/fatura/interfaces/fatura-item.repository.interface';
-import { BuscarLancamentosFaturaRequestDTO } from '@app/fatura/dtos/buscar-lancamentos-fatura-request.dto';
-import { AppPaginationDTO } from '@utils/dtos/pagination.dto';
-import { Page } from '@utils/dtos/page.dto';
-import { FaturaItem } from '@app/fatura/models/fatura-item.entity';
-import { MesAnoDTO } from '@app/conta/dtos/mes-ano.dto';
-import { IMesRepository } from '@app/conta/interfaces/mes.repository.interface';
 import {
   PessoaUsuarioAutenticadoDTO,
   UsuarioAutenticadoDto,
 } from '@app/autenticacao/dtos/usuario-autenticado.dto';
-import { Pessoa } from '@app/pessoa/models/pessoa.entity';
-import { createPaginationOptions } from '@utils/index';
-import { Lancamento } from '@app/conta/models/lancamento.entity';
-import { ParcelaService } from '@app/conta/services/parcela.service';
-import { IResumoFaturaRepository } from '@app/conta/interfaces/resumo-fatura.repository.interface';
-import { numberUtils } from '@utils/number';
-import { IPaginationOptions } from '@extensions/database/interfaces';
-import { IFaturaAbertaRepository } from '@app/conta/interfaces/fatura-aberta.repository.interface';
-import { mesUtil } from '@utils/meses';
-import { EntityManager } from 'typeorm';
-import { FaturaAberta } from '@app/conta/models/fatura-aberta.entity';
-import { Mes } from '@app/conta/models/mes.entity';
-import { IParcelaRepository } from '@app/conta/interfaces/parcela.repository.interface';
-import { ILancamentoRepository } from '@app/conta/interfaces/lancamento.repository.interface';
-import { ITotalPessoaService } from '@app/total-pessoa/interfaces/total-pessoa.service.interface';
+import { MesAnoDTO } from '@app/conta/dtos/mes-ano.dto';
 import { FechamentoFaturaException } from '@app/conta/fechamento-fatura.exception';
+import { IFaturaAbertaRepository } from '@app/conta/interfaces/fatura-aberta.repository.interface';
+import { ILancamentoRepository } from '@app/conta/interfaces/lancamento.repository.interface';
+import { IMesRepository } from '@app/conta/interfaces/mes.repository.interface';
+import { IParcelaRepository } from '@app/conta/interfaces/parcela.repository.interface';
 import { IParcelaService } from '@app/conta/interfaces/parcela.service.interface';
+import { IResumoFaturaRepository } from '@app/conta/interfaces/resumo-fatura.repository.interface';
+import { FaturaAberta } from '@app/conta/models/fatura-aberta.entity';
+import { Lancamento } from '@app/conta/models/lancamento.entity';
+import { Mes } from '@app/conta/models/mes.entity';
+import { ParcelaService } from '@app/conta/services/parcela.service';
+import { BuscarLancamentosFaturaRequestDTO } from '@app/fatura/dtos/buscar-lancamentos-fatura-request.dto';
+import { IFaturaItemRepository } from '@app/fatura/interfaces/fatura-item.repository.interface';
+import { IFaturaService } from '@app/fatura/interfaces/fatura.service.interface';
+import { FaturaItem } from '@app/fatura/models/fatura-item.entity';
+import { Pessoa } from '@app/pessoa/models/pessoa.entity';
+import { ITotalPessoaService } from '@app/total-pessoa/interfaces/total-pessoa.service.interface';
+import { IPaginationOptions } from '@extensions/database/interfaces';
+import { Inject, Injectable, Logger } from '@nestjs/common';
+import { Page } from '@utils/dtos/page.dto';
+import { AppPaginationDTO } from '@utils/dtos/pagination.dto';
+import { createPaginationOptions } from '@utils/index';
+import { mesUtil } from '@utils/meses';
+import { numberUtils } from '@utils/number';
+import { EntityManager } from 'typeorm';
 
 @Injectable()
 export class FaturaService implements IFaturaService {

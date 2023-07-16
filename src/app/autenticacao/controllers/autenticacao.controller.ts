@@ -1,7 +1,7 @@
-import { Body, Controller, Inject, Post } from '@nestjs/common';
+import { UsuarioDto } from '@app/autenticacao/dtos/usuario.dto';
+import { IAutenticacaoService } from '@app/autenticacao/interfaces/autenticacao.service';
 import { Public } from '@decorators/public.decorator';
-import { UsuarioDto } from '../dtos/usuario.dto';
-import { IAutenticacaoService } from '../interfaces/autenticacao.service';
+import { Body, Controller, Inject, Post } from '@nestjs/common';
 
 @Controller({ version: '1', path: 'auth' })
 export class AutenticacaoController {

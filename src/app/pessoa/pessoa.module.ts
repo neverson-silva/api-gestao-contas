@@ -1,8 +1,8 @@
+import { PessoaController } from '@app/pessoa/controllers/pessoa.controller';
+import { pessoaProvider } from '@app/pessoa/pessoa.provider';
+import { StorageModule } from '@app/storage/storage.module';
 import { Module } from '@nestjs/common';
 import { ConfigModule } from '@nestjs/config';
-import { PessoaController } from './controllers/pessoa.controller';
-import { pessoaProvider } from './pessoa.provider';
-import { StorageModule } from '@app/storage/storage.module';
 
 @Module({
   imports: [ConfigModule, StorageModule],

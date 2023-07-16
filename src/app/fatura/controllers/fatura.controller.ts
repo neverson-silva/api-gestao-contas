@@ -1,12 +1,12 @@
-import { Controller, Get, Inject, Post, Query } from '@nestjs/common';
-import { Page } from '@utils/dtos/page.dto';
-import { FaturaItem } from '@app/fatura/models/fatura-item.entity';
-import { AppPaginationDTO } from '@utils/dtos/pagination.dto';
-import { IFaturaService } from '@app/fatura/interfaces/fatura.service.interface';
+import { UsuarioAutenticadoDto } from '@app/autenticacao/dtos/usuario-autenticado.dto';
 import { BuscarLancamentosFaturaRequestDTO } from '@app/fatura/dtos/buscar-lancamentos-fatura-request.dto';
 import { ConsultaItensFaturaResponseDTO } from '@app/fatura/dtos/consulta-itens-fatura-response.dto';
+import { IFaturaService } from '@app/fatura/interfaces/fatura.service.interface';
+import { FaturaItem } from '@app/fatura/models/fatura-item.entity';
 import { User } from '@decorators/usuario.decorator';
-import { UsuarioAutenticadoDto } from '@app/autenticacao/dtos/usuario-autenticado.dto';
+import { Controller, Get, Inject, Post, Query } from '@nestjs/common';
+import { Page } from '@utils/dtos/page.dto';
+import { AppPaginationDTO } from '@utils/dtos/pagination.dto';
 
 @Controller({ version: '1', path: 'faturas' })
 export class FaturaController {

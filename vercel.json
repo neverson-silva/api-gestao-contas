@@ -1,11 +1,17 @@
 {
   "version": 2,
-  "buildCommand": "npm run build",
-  "outputDirectory": "dist",
+  "builds": [
+    {
+      "src": "src/main.ts",
+      "use": "@vercel/node"
+    }
+  ],
+  "installCommand": "npm install",
+
   "routes": [
     {
       "src": "/(.*)",
-      "dest": "dist/main.js",
+      "dest": "src/main.ts",
       "methods": ["GET", "POST", "PUT", "DELETE"]
     }
   ]

@@ -49,9 +49,10 @@ async function bootstrap() {
 
   configurarSwagger(app);
 
-  await app.listen(9090);
+  const port = process.env.PORT || 9090
+  await app.listen(port);
 
-  logger.log('Aplicação iniciada na porta 9090');
+  logger.log('Aplicação iniciada na porta ', port);
 }
 
 function configurarSwagger(app: INestApplication) {

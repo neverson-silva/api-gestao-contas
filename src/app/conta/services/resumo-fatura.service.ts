@@ -173,25 +173,21 @@ export class ResumoFaturaService implements IResumoFaturaService {
     const resumosResponseList: ResumoFaturaPessoas[] = [];
 
     resumosFaturaPorPessoa.forEach((resumosFatura, pessoa) => {
-      const valorMesAtual = resumosFatura
-        .map((rf) => rf.valorTotal)
-        .reduce(
-          (acumulador, valorAtual) =>
-            numberUtils.round(acumulador + valorAtual),
-          0,
-        );
+      const valorMesAtual = numberUtils.round(
+        resumosFatura
+          .map((rf) => rf.valorTotal)
+          .reduce((acumulador, valorAtual) => acumulador + valorAtual, 0),
+      );
 
       let valorMesAnterior = 0;
 
       if (resumosFaturaPessoaMesAnterior.contains(pessoa)) {
-        valorMesAnterior = resumosFaturaPessoaMesAnterior
-          .take(pessoa)
-          .map((rf) => rf.valorTotal)
-          .reduce(
-            (acumulador, valorAtual) =>
-              numberUtils.round(acumulador + valorAtual),
-            0,
-          );
+        valorMesAnterior = numberUtils.round(
+          resumosFaturaPessoaMesAnterior
+            .take(pessoa)
+            .map((rf) => rf.valorTotal)
+            .reduce((acumulador, valorAtual) => acumulador + valorAtual, 0),
+        );
       }
 
       const resumoFaturaPessoa = new ResumoFaturaPessoas();

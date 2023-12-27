@@ -42,6 +42,7 @@ export class TotalPessoa {
 
   @Column({
     transformer: new NumericTransformer(),
+    type: 'decimal',
   })
   diferenca: number;
 }

@@ -33,22 +33,26 @@ export class ResumoFatura {
   ano: number;
 
   @Column({
+    type: 'decimal',
     transformer: new NumericTransformer(),
   })
   valorTotal: number;
 
   @Column({
+    type: 'decimal',
     transformer: new NumericTransformer(),
   })
   valorParcelado: number;
 
   @Column({
+    type: 'decimal',
     name: 'valor_a_vista',
     transformer: new NumericTransformer(),
   })
   valorVista: number;
 
   @Column({
+    type: 'decimal',
     transformer: new NumericTransformer(),
   })
   saldo: number;
@@ -84,7 +88,15 @@ export class ResumoFatura {
   }
 
   isCartaoAVista(): boolean {
-    return !this.isCarne() && !this.isDinheiro() && !this.isParcelado();
+    const isCarne = this.isCarne();
+    const isDinheiro = this.isDinheiro();
+
+    return (
+      !isCarne &&
+      !isDinheiro &&
+      isValidValue(this.valorVista) &&
+      this.valorVista > 0
+    );
   }
 
   isInPeriod(mesAnoDTO: MesAnoDTO): boolean {

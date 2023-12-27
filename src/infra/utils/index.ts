@@ -88,7 +88,7 @@ export function sortBy(items: any[], key: any): any[] {
   return items.sort((a, b) => {
     const isFunction = typeof key === 'function';
     const aValue = isFunction ? key(a) : dotNotedValue(a, key);
-    const bValue = isFunction ? key(b) : dotNotedValue(a, key);
+    const bValue = isFunction ? key(b) : dotNotedValue(b, key);
 
     if (aValue < bValue) {
       return -1;

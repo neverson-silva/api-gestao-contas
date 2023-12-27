@@ -1,39 +1,11 @@
 {
   "version": 2,
-  "builds": [
-    {
-      "src": "nest build",
-      "use": "@vercel/node"
-    }
-  ],
+  "buildCommand": "npm run build",
   "routes": [
     {
       "src": "/(.*)",
-      "dest": "dist/main"
+      "dest": "dist/main.js",
+      "methods": ["GET", "POST", "PUT", "DELETE"]
     }
-  ],
-  "env": {
-    "BUILD_COMMAND": "npm install && npm run build",
-    "DEV_COMMAND": "npm run start:dev",
-    "PROD_COMMAND": "npm run start:prod"
-  },
-  "build": {
-    "env": {
-      "NODE_ENV": "production"
-    },
-    "command": "${BUILD_COMMAND}"
-  },
-  "dev": {
-    "env": {
-      "NODE_ENV": "development"
-    },
-    "command": "${DEV_COMMAND}"
-  },
-  "functions": {
-    "api/**/*.{ts,js}": {
-      "memory": 1024,
-      "maxDuration": 10,
-      "runtime": "@vercel/node@16.13.0"
-    }
-  }
+  ]
 }

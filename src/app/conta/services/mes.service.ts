@@ -7,11 +7,12 @@ import {
 } from '@app/conta/models/forma-pagamento.entity';
 import { Mes } from '@app/conta/models/mes.entity';
 import * as moment from 'moment';
+import { EAppProviders } from '@infra/enums/app-providers.enum';
 
 @Injectable()
 export class MesService implements IMesService {
   constructor(
-    @Inject('IMesRepository')
+    @Inject(EAppProviders.MES_REPOSITORY)
     private readonly mesRepository: IMesRepository,
   ) {}
 
@@ -70,5 +71,9 @@ export class MesService implements IMesService {
 
   async buscarMesAtual(): Promise<Mes> {
     return await this.mesRepository.findOneBy({ atual: true });
+  }
+
+  async buscarPorId(id: number): Promise<Mes> {
+    return await this.mesRepository.findOneBy({ id: id });
   }
 }

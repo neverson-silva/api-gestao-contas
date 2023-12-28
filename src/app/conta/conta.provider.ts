@@ -12,40 +12,61 @@ import { MesService } from '@app/conta/services/mes.service';
 import { ParcelaService } from '@app/conta/services/parcela.service';
 import { ResumoFaturaService } from '@app/conta/services/resumo-fatura.service';
 import { Provider } from '@nestjs/common';
+import { EAppProviders } from '@infra/enums/app-providers.enum';
+import { PessoaRepository } from '@app/pessoa/repositories/pessoa.repository';
 
 export const contaProviders: Provider[] = [
-  { provide: 'ILancamentoRepository', useClass: LancamentoRepository },
-  { provide: 'IParcelaRepository', useClass: ParcelaRepository },
-  { provide: 'IResumoFaturaRepository', useClass: ResumoFaturaRepository },
   {
-    provide: 'ILancamentoService',
+    provide: EAppProviders.LANCAMENTO_REPOSITORY,
+    useClass: LancamentoRepository,
+  },
+  { provide: EAppProviders.PARCELA_REPOSITORY, useClass: ParcelaRepository },
+  {
+    provide: EAppProviders.RESUMO_FATURA_REPOSITORY,
+    useClass: ResumoFaturaRepository,
+  },
+  {
+    provide: EAppProviders.LANCAMENTO_SERVICE,
     useClass: LancamentoService,
   },
   {
-    provide: 'IMesRepository',
+    provide: EAppProviders.MES_REPOSITORY,
     useClass: MesRepository,
   },
-  { provide: 'IFormaPagamentoRepository', useClass: FormaPagamentoRepository },
-  { provide: 'IFormaPagamentoService', useClass: FormaPagamentoService },
-  { provide: 'IResumoFaturaService', useClass: ResumoFaturaService },
   {
-    provide: 'IPessoaCorGraficoRepository',
+    provide: EAppProviders.FORMA_PAGAMENTO_REPOSITORY,
+    useClass: FormaPagamentoRepository,
+  },
+  {
+    provide: EAppProviders.FORMA_PAGAMENTO_SERVICE,
+    useClass: FormaPagamentoService,
+  },
+  {
+    provide: EAppProviders.RESUMO_FATURA_SERVICE,
+    useClass: ResumoFaturaService,
+  },
+  {
+    provide: EAppProviders.PESSOA_COR_GRAFICO_REPOSITORY,
     useClass: PessoaCorGraficoRepository,
   },
   {
-    provide: 'IMesService',
+    provide: EAppProviders.MES_SERVICE,
     useClass: MesService,
   },
   {
-    provide: 'ILancamentoDivisaoService',
+    provide: EAppProviders.LANCAMENTO_DIVISAO_SERVICE,
     useClass: LancamentoDivisaoService,
   },
   {
-    provide: 'IParcelaService',
+    provide: EAppProviders.PARCELA_SERVICE,
     useClass: ParcelaService,
   },
   {
-    provide: 'IFaturaAbertaRepository',
+    provide: EAppProviders.FATURA_ABERTA_REPOSITORY,
     useClass: FaturaAbertaRepository,
+  },
+  {
+    provide: EAppProviders.PESSOA_REPOSITORY,
+    useClass: PessoaRepository,
   },
 ];

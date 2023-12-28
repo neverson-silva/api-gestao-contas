@@ -8,4 +8,6 @@ export interface IMesService {
   ): Promise<Mes>;
 
   buscarMesAtual(): Promise<Mes>;
+
+  buscarPorId(id: number): Promise<Mes>;
 }

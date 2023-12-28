@@ -25,18 +25,30 @@ import { numberUtils } from '@utils/number';
 import { strings } from '@utils/strings';
 import * as moment from 'moment';
 import { EntityManager } from 'typeorm';
+import { EAppProviders } from '@infra/enums/app-providers.enum';
+import { IPessoaRepository } from '@app/pessoa/interfaces/pessoa.repository.interface';
+import { IFormaPagamentoRepository } from '@app/conta/interfaces/forma-pagamento.repository.interface';
 
 @Injectable()
 export class LancamentoService implements ILancamentoService {
   constructor(
-    @Inject('ILancamentoRepository')
+    @Inject(EAppProviders.LANCAMENTO_REPOSITORY)
     private readonly lancamentoRepository: ILancamentoRepository,
-    @Inject('IMesService')
+
+    @Inject(EAppProviders.MES_SERVICE)
     private readonly mesService: IMesService,
-    @Inject('ILancamentoDivisaoService')
+
+    @Inject(EAppProviders.LANCAMENTO_DIVISAO_SERVICE)
     private readonly lancamentoDivisaoService: ILancamentoDivisaoService,
-    @Inject('IParcelaService')
+
+    @Inject(EAppProviders.PARCELA_SERVICE)
     private readonly parcelaService: IParcelaService,
+
+    @Inject(EAppProviders.FORMA_PAGAMENTO_REPOSITORY)
+    private readonly formaPagamentoRepository: IFormaPagamentoRepository,
+
+    @Inject(EAppProviders.PESSOA_REPOSITORY)
+    private readonly pessoaRepository: IPessoaRepository,
   ) {}
 
   async apagar(idLancamento: number): Promise<void> {
@@ -154,20 +166,28 @@ export class LancamentoService implements ILancamentoService {
     lancamento.ano = cadastrarLancamentoDTO.dataCompra.getFullYear();
     lancamento.parcelado = cadastrarLancamentoDTO.parcelado;
     lancamento.quantidadeParcelas = cadastrarLancamentoDTO.quantidadeParcelas;
-    lancamento.formaPagamento = {
+    lancamento.formaPagamento = await this.formaPagamentoRepository.findOneBy({
       id: cadastrarLancamentoDTO.formaPagamentoId,
-    } as FormaPagamento;
+    });
 
     if (cadastrarLancamentoDTO.mesReferencia != null) {
-      lancamento.mes = new Mes(cadastrarLancamentoDTO.mesReferencia);
+      lancamento.mes = await this.mesService.buscarPorId(
+        cadastrarLancamentoDTO.mesReferencia,
+      );
     } else {
-      lancamento.mes = await this.mesService.getFromDataCompraAndFormaPagamento(
-        cadastrarLancamentoDTO.dataCompra,
-        lancamento.formaPagamento,
+      lancamento.mes = await this.mesService.buscarPorId(
+        (
+          await this.mesService.getFromDataCompraAndFormaPagamento(
+            cadastrarLancamentoDTO.dataCompra,
+            lancamento.formaPagamento,
+          )
+        )?.id,
       );
     }
 
-    lancamento.pessoa = new Pessoa(cadastrarLancamentoDTO.idPessoa);
+    lancamento.pessoa = await this.pessoaRepository.findOneBy({
+      id: cadastrarLancamentoDTO.idPessoa,
+    });
     lancamento.pago = false;
 
     lancamento.tipoConta =

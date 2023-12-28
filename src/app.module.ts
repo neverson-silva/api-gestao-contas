@@ -34,12 +34,13 @@ import { StorageModule } from './app/storage/storage.module';
       extraProviders: [ConfigService],
       inject: [ConfigService],
       useFactory: (configService: ConfigService) => {
+        const env = configService.getAt('NODE_ENV') || process.env.NODE_ENV;
         const database: DatabaseConfig =
           configService.getAt<DatabaseConfig>('database');
         return {
           ...database,
           namingStrategy: new SnakeNamingStrategy(),
-          logger: new CustomLogger(),
+          logger: env !== 'production' ? new CustomLogger() : undefined,
         } as any;
       },
     }),

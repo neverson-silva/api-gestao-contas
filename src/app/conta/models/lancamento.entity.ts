@@ -159,7 +159,7 @@ export class Lancamento {
   @Expose()
   get valorPorParcela(): number {
     return this.isParcelado
-      ? numberUtils.round(this.valor / this.quantidadeParcelas)
+      ? numberUtils.round(Number(this.valorUtilizado) / this.quantidadeParcelas)
       : 0;
   }
 }
